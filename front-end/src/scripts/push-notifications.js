@@ -1,4 +1,5 @@
-const pushServerPublicKey = "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8";
+const pushServerPublicKey =
+  "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8";
 
 /**
  * checks if Push notification and service workers are supported by your browser
@@ -12,10 +13,11 @@ function isPushNotificationSupported() {
  */
 function initializePushNotifications() {
   // request user grant to show notification
-  return Notification.requestPermission(function(result) {
+  return Notification.requestPermission(function (result) {
     return result;
   });
 }
+
 /**
  * shows a notification
  */
@@ -30,40 +32,46 @@ function sendNotification() {
     tag: "new-product",
     image: img,
     badge: "https://spyna.it/icons/android-icon-192x192.png",
-    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
+    actions: [
+      {
+        action: "Detail",
+        title: "View",
+        icon: "https://via.placeholder.com/128/ff0000",
+      },
+    ],
   };
-  navigator.serviceWorker.ready.then(function(serviceWorker) {
+  navigator.serviceWorker.ready.then(function (serviceWorker) {
     serviceWorker.showNotification(title, options);
   });
 }
 
 /**
- * 
+ *
  */
 function registerServiceWorker() {
-  navigator.serviceWorker.register("/sw.js").then(function(swRegistration) {
+  navigator.serviceWorker.register("/sw.js").then(function (swRegistration) {
     //you can do something with the service wrker registration (swRegistration)
   });
 }
 
 /**
- * 
+ *
  * using the registered service worker creates a push notification subscription and returns it
- * 
+ *
  */
 function createNotificationSubscription() {
   //wait for service worker installation to be ready, and then
-  return navigator.serviceWorker.ready.then(function(serviceWorker) {
+  return navigator.serviceWorker.ready.then(function (serviceWorker) {
     // subscribe and return the subscription
     return serviceWorker.pushManager
-    .subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: pushServerPublicKey
-    })
-    .then(function(subscription) {
-      console.log("User is subscribed.", subscription);
-      return subscription;
-    });
+      .subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: pushServerPublicKey,
+      })
+      .then(function (subscription) {
+        console.log("User is subscribed.", subscription);
+        return subscription;
+      });
   });
 }
 
@@ -73,10 +81,10 @@ function createNotificationSubscription() {
 function getUserSubscription() {
   //wait for service worker installation to be ready, and then
   return navigator.serviceWorker.ready
-    .then(function(serviceWorker) {
+    .then(function (serviceWorker) {
       return serviceWorker.pushManager.getSubscription();
     })
-    .then(function(pushSubscription) {
+    .then(function (pushSubscription) {
       return pushSubscription;
     });
 }
@@ -87,5 +95,5 @@ export {
   registerServiceWorker,
   sendNotification,
   createNotificationSubscription,
-  getUserSubscription
+  getUserSubscription,
 };

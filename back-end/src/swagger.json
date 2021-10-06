@@ -9,8 +9,8 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "push-notification-demo-server.herokuapp.com/",
-  "basePath": "",
+  "host": "push-notification-demo-server.herokuapp.com",
+  "basePath": "/",
   "tags": [
     {
       "name": "Web Push Subscription",
