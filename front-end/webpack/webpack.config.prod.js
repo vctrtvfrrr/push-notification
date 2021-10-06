@@ -17,7 +17,7 @@ module.exports = merge(common, {
     new Webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production"),
       "process.env.PUSH_SERVER_URL": JSON.stringify(
-        "https://push-notification-demo-server.herokuapp.com"
+        "https://push-notifications-test-server.herokuapp.com"
       ),
     }),
     new Webpack.optimize.ModuleConcatenationPlugin(),
