@@ -37,4 +37,4 @@ export CORS_ORIGIN=http://localhost:9000 && node src/server.js
 
 ## deploying to your server
 
-If you want to deploy the front-end to your server remember to modify the back-end host in the webpack config file: `webpack.config.prod.js`: `'process.env.PUSH_SERVER_URL': JSON.stringify('https://push-notifications-test-server.herokuapp.com'),`
+If you want to deploy the front-end to your server remember to modify the back-end host in the webpack config file: `webpack.config.prod.js`: `'process.env.PUSH_SERVER_URL': JSON.stringify('https://push-notifications-test-server.netlify.app'),`
