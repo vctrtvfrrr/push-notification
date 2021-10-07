@@ -31,7 +31,7 @@ function sendPushNotification(req, res) {
   const subscriptionId = req.params.id;
   const pushSubscription = subscriptions[subscriptionId];
 
-  setTimeout(() => {
+  setInterval(() => {
     webpush
       .sendNotification(
         pushSubscription,
